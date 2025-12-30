@@ -1,0 +1,27 @@
+{"$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mobileoperator.com/schema/usage-record.json",
+  "title": "Record",
+  "type": "object",
+  "properties": {
+    "id": {"$ref": "base.json#/definitions/uuidType"},
+    "customerId": {"$ref": "base.json#/definitions/uuidType"},
+    "callMinutes": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "smsCount": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "internetUsed": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "usageDate": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": ["id", "customerId", "callMinutes", "smsCount", "internetUsed", "usageDate"],
+  "additionalProperties": false
+}

@@ -1,0 +1,17 @@
+{"$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mobileoperator.com/schema/balance.json",
+  "title": "Balance",
+  "type": "object",
+  "properties": {
+    "id": {"$ref": "base.json#/definitions/uuidType"},
+    "customerId": {"$ref": "base.json#/definitions/uuidType"},
+    "customer": {"$ref": "customer.json#"},
+    "amount": {"$ref": "base.json#/definitions/moneyType"},
+    "lastUpdated": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": ["id","customerId","amount","lastUpdated"],
+  "additionalProperties": false
+}

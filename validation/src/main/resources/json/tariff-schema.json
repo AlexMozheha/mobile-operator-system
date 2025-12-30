@@ -1,0 +1,29 @@
+{"$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mobileoperator.com/schema/tariff.json",
+  "title": "Tariff",
+  "type": "object",
+  "properties": {
+    "id": {"$ref": "base.json#/definitions/uuidType"},
+    "name": {"$ref": "base.json#/definitions/nameType"},
+    "description": {
+      "type": "string",
+      "minLength": 5,
+      "maxLength": 100
+    },
+    "monthlyFee": {"$ref": "base.json#/definitions/moneyType"},
+    "internetLimit": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "callMinutes": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "smsLimit": {
+      "type": "integer",
+      "minimum": 0
+    }
+  },
+  "required": ["id", "name", "monthlyFee", "callMinutes", "smsLimit"],
+  "additionalProperties": false
+}
