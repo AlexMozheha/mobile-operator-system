@@ -1,4 +1,4 @@
-package microservice.validation;
+package com.operator.validation;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -16,6 +16,7 @@ import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Component
 @Slf4j
@@ -46,6 +47,29 @@ public class JsonAgainstSchemaValidator {
 
         } catch (Exception e) {
             System.err.println("Error validating " + schemaFile + ": " + e.getMessage());
+        }
+    }
+
+    public void validateString(String jsonContent, String schemaFile) throws IOException {
+        String cleanJson = jsonContent.trim();
+
+        // 2. Якщо Swagger прислав JSON загорнутий у лапки як рядок (наприклад: "{\"id\":1}")
+        if (cleanJson.startsWith("\"") && cleanJson.endsWith("\"")) {
+            // Десеріалізуємо рядок у нормальний JSON-текст
+            cleanJson = mapper.readValue(cleanJson, String.class);
+        }
+
+        JsonSchema schema = loadSchemaFromClasspath(schemaFile);
+        JsonNode json = mapper.readTree(cleanJson); // Тепер тут буде чистий об'єкт {}
+
+        Set<ValidationMessage> errors = schema.validate(json);
+        if (!errors.isEmpty()) {
+            String message = errors.stream()
+                    .map(ValidationMessage::getMessage)
+                    .collect(Collectors.joining("; "));
+            // Викидаємо 400 помилку з переліком проблем
+            throw new org.springframework.web.server.ResponseStatusException(
+                    org.springframework.http.HttpStatus.BAD_REQUEST, "JSON Schema Error: " + message);
         }
     }
 

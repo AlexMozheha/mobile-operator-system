@@ -1,10 +1,10 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id" : "https://mobileoperator.com/schema/customer.json",
+  "$id" : "https://mobileoperator.com/schema/customer-schema.json",
   "title": "Customer",
   "type": "object",
   "properties": {
-    "id": {"$ref": "base.json#/definitions/uuidType"},
+    "id": {"$ref": "base.json#/definitions/idType"},
     "fullName": {"$ref": "base.json#/definitions/nameType"},
     "phoneNumber": {
       "type": "string",
@@ -21,7 +21,7 @@
       "type": "string",
       "format": "date-time"
     },
-    "tariffId": {"$ref": "base.json#/definitions/uuidType"},
+    "tariffId": {"$ref": "base.json#/definitions/idType"},
     "isActive": {"type": "boolean"}
   },
   "required": ["id", "fullName", "phoneNumber", "createdAt", "tariffId", "isActive"],

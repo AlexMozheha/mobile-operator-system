@@ -5,10 +5,32 @@
     <file url="file://$PROJECT_DIR$/auth-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/billing-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/billing-service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/common-api/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/common-dto/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/common-dto/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/common-mapper/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/common-mapper/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/common-mappers/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/common-mappers/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/common-model/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/common-model/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/controller/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/controller/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/crm-service/crm-api/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/crm-service/crm-impl/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/crm-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/crm-service/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/selfservice-portal/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/selfservice-portal/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/dto/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/dto/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/entity/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/entity/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/operator-frontend/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/repository/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/repository/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/self-service-portal/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/self-service-portal/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/validation/src/main/java" charset="UTF-8" />

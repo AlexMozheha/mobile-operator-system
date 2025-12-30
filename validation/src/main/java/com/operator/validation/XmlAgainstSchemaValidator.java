@@ -1,10 +1,12 @@
-package microservice.validation;
+package com.operator.validation;
 
 
 import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
+import org.springframework.web.server.ResponseStatusException;
 import org.xml.sax.SAXException;
 
 import jakarta.xml.bind.JAXBContext;
@@ -43,6 +45,20 @@ public class XmlAgainstSchemaValidator {
             log.error("Cannot create Schema for {} because {}\nAborted...", schemaFileName, e.getMessage());
 //            throw new RuntimeException(e);
         }
+    }
+
+    public void validateString(String xmlContent, String schemaFileName) throws SAXException, IOException {
+        try {
+            Schema schema = getSchema(schemaFileName);
+            Validator validator = schema.newValidator();
+            Source source = new StreamSource(new java.io.StringReader(xmlContent));
+            validator.validate(source);
+        } catch (org.xml.sax.SAXException ex) {
+            // Ловимо помилку схеми (наприклад, від'ємне число) і перетворюємо на 400 статус
+            log.warn("XML Validation failed: {}", ex.getMessage());
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "XML Schema Error: " + ex.getMessage());
+        }
+
     }
 
     /*public <T> T validateAndMap(String schemaFileName, String xmlFileName, Class<T> entityClass) {
@@ -105,8 +121,9 @@ public class XmlAgainstSchemaValidator {
             validator.validate(source);
             System.out.println(xmlFileName + " is valid.");}
         catch (IOException | SAXException ex) {
-            log.error("{} is not valid because of {}", xmlFileName, ex.getMessage());
-            return false;
+            log.error("{} is not valid", xmlFileName);
+            throw new org.springframework.web.server.ResponseStatusException(
+                    org.springframework.http.HttpStatus.BAD_REQUEST, "XML Validation Error: " + ex.getMessage());
         }
         return true;
     }

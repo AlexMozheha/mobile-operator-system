@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<customer xmlns="http://mobileoperator.com/schema/customer"
+          xmlns:base="http://mobileoperator.com/schema/base-types"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://mobileoperator.com/schema/customer customer.xsd">
+    <id>1</id>
+    <fullName>Іваненко Петро</fullName>
+    <phoneNumber>+380971234567</phoneNumber>
+    <email>ivanenko.p@example.com</email>
+    <createdAt>2023-10-15T10:00:00Z</createdAt>
+    <tariffId>1</tariffId>
+    <isActive>true</isActive>
+</customer>

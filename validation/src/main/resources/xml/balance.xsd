@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://mobileoperator.com/schema/balance"
+           xmlns:bal="http://mobileoperator.com/schema/balance"
+           xmlns:base="http://mobileoperator.com/schema/base-types"
+           xmlns:crm="http://mobileoperator.com/schema/customer"
+           elementFormDefault="qualified">
+
+    <xs:import namespace="http://mobileoperator.com/schema/customer"
+               schemaLocation="customer.xsd"/>
+
+    <xs:import namespace="http://mobileoperator.com/schema/base-types"
+               schemaLocation="base-types.xsd"/>
+
+    <xs:element name="balance" type="bal:BalanceType"/>
+
+    <xs:complexType name="BalanceType">
+        <xs:sequence>
+            <xs:element name="customerId" type="base:idType"/>
+            <xs:element name="amount" type="base:moneyZIncType"/>
+            <xs:element name="lastUpdated" type="xs:dateTime"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>

@@ -1,0 +1,9 @@
+{
+  "id": "1",
+  "customerId": "1",
+  "amount": 250.00,
+  "issueDate": "2025-09-30T00:00:00Z",
+  "dueDate": "2025-10-15T00:00:00Z",
+  "paidAt": "2025-10-10T15:00:00Z",
+  "status": "PAID"
+}

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record xmlns="http://mobileoperator.com/schema/usage-record"
+        xmlns:base="http://mobileoperator.com/schema/base-types"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://mobileoperator.com/schema/usage-record usage-record.xsd">
+    <id>b2c3d4e5-f6a7-8b9c-0d1e-2f3a4b5c6d7e</id>
+    <customerId>a1b2c3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6d</customerId>
+    <callMinutes>-120</callMinutes>
+    <smsCount>15</smsCount>
+    <internetUsed>3584.50</internetUsed>
+    <usageDate>Invalid Date</usageDate>
+</record>

@@ -1,21 +1,12 @@
 {"$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://mobileoperator.com/schema/invoice.json",
+  "$id": "https://mobileoperator.com/schema/invoice-schema.json",
   "title": "Invoice",
   "type": "object",
   "properties": {
-    "id": {"$ref": "base.json#/definitions/uuidType"},
-    "customerId": {"$ref": "base.json#/definitions/uuidType"},
-    "amount": {
-      "type": "number",
-      "exclusiveMinimum": 0.00,
-      "multipleOf": 0.01,
-      "maximum": 9999999999.99
-    },
+    "id": {"$ref": "base.json#/definitions/idType"},
+    "customerId": {"$ref": "base.json#/definitions/idType"},
+    "amount": {"$ref": "base.json#/definitions/moneyZIncType"},
     "issueDate": {
-      "type": "string",
-      "format": "date-time"
-    },
-    "dueDate": {
       "type": "string",
       "format": "date-time"
     },
@@ -28,6 +19,6 @@
       "enum": ["PAID", "UNPAID", "OVERDUE", "CANCELLED"]
     }
   },
-  "required": ["id","customerId","issueDate", "dueDate", "status"],
+  "required": ["customerId", "amount"],
   "additionalProperties": false
 }

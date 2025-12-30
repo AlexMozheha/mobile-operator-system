@@ -1,0 +1,9 @@
+{
+  "id": "1",
+  "fullName": "Іван Петренко",
+  "phoneNumber": "+380671234567",
+  "email": "ivan.petrenko@example.com",
+  "createdAt": "2025-10-14T10:00:00Z",
+  "tariffId": "1",
+  "isActive": true
+}

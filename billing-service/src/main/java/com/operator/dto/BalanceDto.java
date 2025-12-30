@@ -1,4 +1,4 @@
-package com.operator.dto.billing;
+package com.operator.dto;
 
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotNull;

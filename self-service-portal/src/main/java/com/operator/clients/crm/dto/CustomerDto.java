@@ -1,4 +1,4 @@
-package com.operator.dto;
+package com.operator.clients.crm.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -11,6 +11,6 @@ public record CustomerDto(
         @NotBlank String lastName,
         @NotBlank @Pattern(regexp = "^\\+[1-9]\\d{7,14}$") String phoneNumber,
         @Email String email,
-        @NotNull Long tariffId
+        Long tariffId
 ) {
 }

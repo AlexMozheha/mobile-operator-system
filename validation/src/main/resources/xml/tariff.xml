@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tariff xmlns="http://mobileoperator.com/schema/tariff"
+        xmlns:base="http://mobileoperator.com/schema/base-types"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://mobileoperator.com/schema/tariff tariff.xsd">
+    <id>1</id>
+    <name>Безліміт-Преміум</name>
+    <description>Повний безліміт на все: дзвінки та інтернет.</description>
+    <monthlyFee>350.50</monthlyFee>
+    <internetLimit>0</internetLimit>
+    <callMinutes>5000</callMinutes>
+    <smsLimit>1000</smsLimit>
+</tariff>

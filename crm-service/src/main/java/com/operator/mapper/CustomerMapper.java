@@ -1,6 +1,6 @@
 package com.operator.mapper;
 
-import com.operator.dto.crm.CustomerDto;
+import com.operator.dto.CustomerDto;
 import com.operator.entity.CustomerEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

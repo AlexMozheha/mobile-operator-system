@@ -1,4 +1,4 @@
-package com.operator.dto.billing;
+package com.operator.dto;
 
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PositiveOrZero;
@@ -11,7 +11,7 @@ public record UsageRecordDto(
         @NotNull Long customerId,
         @NotNull @PositiveOrZero Integer callMinutes,
         @NotNull @PositiveOrZero Integer smsCount,
-        @NotNull @PositiveOrZero BigDecimal internetUsed,
+        @NotNull @PositiveOrZero BigDecimal internetCount,
         @NotNull Instant usageDate
 ) {
 }

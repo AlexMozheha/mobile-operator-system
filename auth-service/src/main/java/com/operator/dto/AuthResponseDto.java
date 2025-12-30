@@ -1,4 +1,4 @@
-package com.operator.dto.auth;
+package com.operator.dto;
 
 public record AuthResponseDto(
         String accessToken,

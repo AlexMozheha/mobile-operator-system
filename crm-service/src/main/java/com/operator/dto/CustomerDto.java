@@ -1,4 +1,4 @@
-package com.operator.dto.crm;
+package com.operator.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

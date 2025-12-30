@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mobileoperator.com/schema/base.json",
+  "definitions": {
+    "idType": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "moneyZIncType": {
+      "type": "number",
+      "minimum": 0.00,
+      "multipleOf": 0.01,
+      "maximum": 9999999999.99
+    },
+    "moneyZExType": {
+      "type": "number",
+      "exclusiveMinimum": 0.00,
+      "multipleOf": 0.01,
+      "maximum": 9999999999.99
+    },
+    "nameType": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 50,
+      "pattern": "^[A-Za-zА-Яа-яЇїІіЄєҐґ'\\-*+]+( [A-Za-zА-Яа-яЇїІіЄєҐґ'\\-*+]+)*$"
+    },
+    "recordInt": {
+      "type": "integer",
+      "minimum": 0
+    }
+  }
+}

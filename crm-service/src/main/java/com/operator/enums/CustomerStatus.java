@@ -1,4 +1,4 @@
-package com.operator.dto.enums;
+package com.operator.enums;
 
 public enum CustomerStatus {
     ACTIVE,
