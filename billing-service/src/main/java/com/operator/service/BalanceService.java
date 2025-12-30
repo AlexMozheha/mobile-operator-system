@@ -1,4 +1,7 @@
 package com.operator.service;
 
-public class BalanceService {
+import com.operator.dto.BalanceDto;
+
+public interface BalanceService {
+    BalanceDto getBalanceByCustomerId(Long customerId);
 }

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bal:balance xmlns:bal="http://mobileoperator.com/schema/balance"
+             xmlns:base="http://mobileoperator.com/schema/base-types"
+             xmlns:crm="http://mobileoperator.com/schema/customer"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="
+                 http://mobileoperator.com/schema/balance balance.xsd
+                 http://mobileoperator.com/schema/customer customer.xsd">
+
+    <bal:customerId>1</bal:customerId>
+    <bal:amount>450.75</bal:amount>
+    <bal:lastUpdated>2025-10-15T13:00:00Z</bal:lastUpdated>
+</bal:balance>

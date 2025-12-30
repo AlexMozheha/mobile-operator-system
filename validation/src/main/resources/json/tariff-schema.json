@@ -3,26 +3,17 @@
   "title": "Tariff",
   "type": "object",
   "properties": {
-    "id": {"$ref": "base.json#/definitions/uuidType"},
+    "id": {"$ref": "base.json#/definitions/idType"},
     "name": {"$ref": "base.json#/definitions/nameType"},
     "description": {
       "type": "string",
       "minLength": 5,
       "maxLength": 100
     },
-    "monthlyFee": {"$ref": "base.json#/definitions/moneyType"},
-    "internetLimit": {
-      "type": "integer",
-      "minimum": 0
-    },
-    "callMinutes": {
-      "type": "integer",
-      "minimum": 0
-    },
-    "smsLimit": {
-      "type": "integer",
-      "minimum": 0
-    }
+    "monthlyFee": {"$ref": "base.json#/definitions/moneyZIncType"},
+    "internetLimit": {"$ref": "base.json#/definitions/recordInt"},
+    "callMinutes": {"$ref": "base.json#/definitions/recordInt"},
+    "smsLimit": {"$ref": "base.json#/definitions/recordInt"}
   },
   "required": ["id", "name", "monthlyFee", "callMinutes", "smsLimit"],
   "additionalProperties": false

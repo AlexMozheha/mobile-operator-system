@@ -1,4 +1,4 @@
-package com.operator.clients.crm.dto;
+package com.operator.dto;
 
 public record TariffChangeCommand(
         Long customerId,

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<invoice xmlns="http://mobileoperator.com/schema/invoice"
+         xmlns:base="http://mobileoperator.com/schema/base-types"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://mobileoperator.com/schema/invoice invoice.xsd">
+<id>c3d4e5f6-a7b8-c9d0-e1f2-a3b4c5d6e7f8</id>
+<customerId>a1b2c3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6d</customerId>
+<amount>0.00</amount> <issueDate>2025-10-01T00:00:00Z</issueDate>
+<dueDate>2025-10-15T23:59:59Z</dueDate>
+<paidAt>2025-10-10T12:00:00Z</paidAt>
+<status>COMPLETED</status> </invoice>

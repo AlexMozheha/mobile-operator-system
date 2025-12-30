@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:tns="http://mobileoperator.com/schema/customer"
+           targetNamespace="http://mobileoperator.com/schema/customer"
+        xmlns:base="http://mobileoperator.com/schema/base-types"
+           elementFormDefault="qualified">
+
+    <xs:import namespace="http://mobileoperator.com/schema/base-types" schemaLocation="base-types.xsd"/>
+
+    <xs:element name="customer" type="tns:CustomerType"/>
+
+        <xs:complexType name="CustomerType">
+            <xs:sequence>
+                <xs:element name="id" type="base:idType"/>
+                <xs:element name="fullName" type="base:nameType"/>
+                <xs:element name="phoneNumber">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:minLength value="13"/>
+                            <xs:maxLength value="13"/>
+                            <xs:pattern value="\+380[0-9]{9}"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="email" minOccurs="0">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:minLength value="5"/>
+                            <xs:maxLength value="50"/>
+                            <xs:whiteSpace value="collapse"/>
+                            <xs:pattern value="[^@]+@[^@]+\.[^@]+"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="createdAt" type="xs:dateTime"/>
+                <xs:element name="tariffId" type="base:idType"/>
+                <xs:element name="isActive" type="xs:boolean"/>
+            </xs:sequence>
+        </xs:complexType>
+
+</xs:schema>

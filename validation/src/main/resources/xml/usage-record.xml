@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record xmlns="http://mobileoperator.com/schema/usage-record"
+        xmlns:base="http://mobileoperator.com/schema/base-types"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://mobileoperator.com/schema/usage-record usage-record.xsd">
+    <customerId>1</customerId>
+    <callMinutes>120</callMinutes>
+    <smsCount>15</smsCount>
+    <internetCount>3584</internetCount>
+    <usageDate>2025-10-14T15:30:00Z</usageDate>
+</record>

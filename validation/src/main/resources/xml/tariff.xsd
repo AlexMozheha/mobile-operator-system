@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:tns="http://mobileoperator.com/schema/tariff"
+           targetNamespace="http://mobileoperator.com/schema/tariff"
+           xmlns:base="http://mobileoperator.com/schema/base-types"
+           elementFormDefault="qualified">
+
+    <xs:import namespace="http://mobileoperator.com/schema/base-types" schemaLocation="base-types.xsd"/>
+
+    <xs:element name="tariff" type="tns:TariffType"/>
+
+    <xs:complexType name="TariffType">
+        <xs:sequence>
+            <xs:element name="id" type="base:idType"/>
+            <xs:element name="name" type="base:nameType"/>
+            <xs:element name="description" minOccurs="0">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:minLength value="5"/>
+                            <xs:maxLength value="100"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+            </xs:element>
+            <xs:element name="monthlyFee" type="base:moneyZIncType"/>
+            <xs:element name="internetLimit" type="xs:nonNegativeInteger"/>
+            <xs:element name="callMinutes" type="xs:nonNegativeInteger"/>
+            <xs:element name="smsLimit" type="xs:nonNegativeInteger"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>

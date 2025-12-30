@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Self-Service Portal (BFF Gateway)</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        .container {
+            display: flex;
+            gap: 20px;
+            width: 100%;
+        }
+
+        .card {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            flex: 1;
+            min-width: 320px;
+            box-shadow: 0 2px 8px rgba(0,0,0,.1);
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 6px;
+            margin-top: 4px;
+        }
+
+        button {
+            width: 100%;
+            padding: 8px;
+            margin-top: 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            background: #1a73e8;
+            color: white;
+            font-size: 14px;
+        }
+
+        button.green { background: #34a853; }
+        button.orange { background: #fbbc04; color: black; }
+        button.gray { background: #5f6368; }
+
+        hr {
+            margin: 15px 0;
+        }
+
+        #output {
+            margin-top: 25px;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,.1);
+        }
+
+        .error {
+            color: #b00020;
+            font-weight: bold;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 6px;
+        }
+
+        th {
+            background: #f0f0f0;
+        }
+
+        .section {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Self-Service Portal (Gateway)</h1>
+
+<div class="container">
+
+    <div class="card">
+        <h3>Клієнтський сервіс</h3>
+
+        <label>ID клієнта</label>
+        <input type="number" id="profileCustomerId" value="3">
+        <button onclick="getProfile()">Переглянути профіль</button>
+
+        <hr>
+
+        <label>ID клієнта</label>
+        <input type="number" id="tariffCustomerId">
+
+        <label>Новий тариф (ID)</label>
+        <input type="number" id="newTariffId">
+
+        <button class="green" onclick="changeTariff()">Змінити тариф</button>
+    </div>
+
+    <div class="card">
+        <h3>Фінансові операції</h3>
+
+        <label>ID клієнта</label>
+        <input type="number" id="invoiceCustomerId" value="3">
+
+        <label>Сума</label>
+        <input type="number" id="invAmount" value="500">
+
+        <label>Формат</label>
+        <select id="format">
+            <option value="json">JSON</option>
+            <option value="xml">XML</option>
+        </select>
+
+        <button onclick="createInvoice()">Створити рахунок</button>
+
+        <hr>
+
+        <label>ID рахунку</label>
+        <input type="number" id="payInvoiceId">
+
+        <button class="orange" onclick="payInvoice()">Оплатити</button>
+    </div>
+
+    <div class="card">
+        <h3>Адміністрування</h3>
+
+        <label>Page</label>
+        <input type="number" id="page" value="0">
+
+        <label>Size</label>
+        <input type="number" id="size" value="5">
+
+        <button class="gray" onclick="listCustomers()">Список клієнтів</button>
+        <button class="gray" onclick="listTariffs()">Список тарифів</button>
+    </div>
+</div>
+
+<div id="output">
+    <i>Результати зʼявляться тут…</i>
+</div>
+
+<script>
+const API = "http://localhost:8083/api/portal";
+
+function setOutput(html) {
+    document.getElementById("output").innerHTML = html;
+}
+
+async function handleResponse(res) {
+    const responseText = await res.text();
+
+    if (res.ok) {
+        if (!responseText) return null;
+        try { return JSON.parse(responseText); } catch { return responseText; }
+    }
+
+    let errorMessage = "Невідома помилка";
+
+    const jsonStartIndex = responseText.indexOf('{');
+    const cleanJsonText = jsonStartIndex !== -1 ? responseText.substring(jsonStartIndex) : responseText;
+
+    try {
+        const errorBody = JSON.parse(cleanJsonText);
+        
+        errorMessage = errorBody.message || errorBody.error || `Помилка ${res.status}`;
+    } catch (e) {
+        if (responseText.includes('"message":"')) {
+            errorMessage = responseText.split('"message":"')[1].split('"')[0];
+        } else {
+            errorMessage = responseText.substring(0, 100);
+        }
+    }
+
+    if (errorMessage.includes("ResponseStatusException")) {
+        errorMessage = errorMessage.split('"').pop().replace(/\\/g, '');
+    }
+
+    throw new Error(errorMessage);
+}
+
+
+async function getProfile() {
+    try {
+        const id = profileCustomerId.value;
+        const res = await fetch(`${API}/profile/${id}`);
+        const d = await handleResponse(res);
+
+        setOutput(`
+            <div class="section">
+                <h3>Клієнт</h3>
+                <table>
+                    <tr><td>ID</td><td>${d.customer.id}</td></tr>
+                    <tr><td>Імʼя</td><td>${d.customer.firstName} ${d.customer.lastName}</td></tr>
+                    <tr><td>Телефон</td><td>${d.customer.phoneNumber}</td></tr>
+                    <tr><td>Email</td><td>${d.customer.email}</td></tr>
+                </table>
+            </div>
+
+            <div class="section">
+                <h3>Баланс</h3>
+                <b>${d.balance.amount}</b> грн
+            </div>
+
+            <div class="section">
+                <h3>Тариф</h3>
+                <table>
+                    <tr><td>ID</td><td>${d.tariff.id}</td></tr>
+                    <tr><td>Назва</td><td>${d.tariff.name}</td></tr>
+                    <tr><td>Ціна / міс</td><td>${d.tariff.monthlyPrice}</td></tr>
+                    <tr><td>Хвилини</td><td>${d.tariff.minutesPackage}</td></tr>
+                    <tr><td>SMS</td><td>${d.tariff.smsPackage}</td></tr>
+                    <tr><td>GB</td><td>${d.tariff.gigaBytesPackage}</td></tr>
+                </table>
+            </div>
+
+            <div class="section">
+                <h3>Рахунки</h3>
+                <table>
+                    <tr><th>ID</th><th>Сума</th><th>Статус</th></tr>
+                    ${d.recentInvoices.map(i =>
+                        `<tr><td>${i.id}</td><td>${i.amount}</td><td>${i.invoiceStatus}</td></tr>`
+                    ).join("")}
+                </table>
+            </div>
+        `);
+    } catch (e) {
+        setOutput(`<div class="error">${e.message}</div>`);
+    }
+}
+
+
+async function createInvoice() {
+    try {
+        let body;
+        let contentType;
+
+        if (format.value === "json") {
+            body = JSON.stringify({ 
+                customerId: Number(invoiceCustomerId.value), 
+                amount: Number(invAmount.value) 
+            });
+            contentType = "application/json";
+        } else {
+            body = `<?xml version="1.0" encoding="UTF-8"?>
+<invoice xmlns="http://mobileoperator.com/schema/invoice">
+    <customerId>${invoiceCustomerId.value}</customerId>
+    <amount>${invAmount.value}</amount>
+</invoice>`;
+            contentType = "application/xml";
+        }
+
+        const res = await fetch(`${API}/invoice/create`, {
+            method: "POST",
+            headers: { "Content-Type": contentType },
+            body: body
+        });
+
+        const d = await handleResponse(res);
+
+        setOutput(`
+            <h3>Рахунок створено</h3>
+            ID: ${d.id}<br>
+            Сума: ${d.amount}<br>
+            Статус: ${d.invoiceStatus}
+        `);
+    } catch (e) {
+        setOutput(`<div class="error">${e.message}</div>`);
+    }
+}
+
+
+async function payInvoice() {
+    try {
+        const res = await fetch(`${API}/invoice/${payInvoiceId.value}/pay`, { method: "POST" });
+        await handleResponse(res);
+        setOutput("<b> Рахунок оплачено</b>");
+    } catch (e) {
+        setOutput(`<div class="error">${e.message}</div>`);
+    }
+}
+
+async function listCustomers() {
+    try {
+        const p = document.getElementById("page").value;
+        const s = document.getElementById("size").value;
+
+        const res = await fetch(`${API}/admin/customer?page=${p}&size=${s}`);
+        const data = await handleResponse(res);
+
+        let html = `<h3> Клієнти</h3><table>
+            <tr>
+                <th>ID</th><th>Імʼя</th><th>Телефон</th>
+                <th>Email</th><th>Tariff ID</th>
+            </tr>`;
+
+        data.content.forEach(c => {
+            html += `<tr>
+                <td>${c.id}</td>
+                <td>${c.firstName} ${c.lastName}</td>
+                <td>${c.phoneNumber}</td>
+                <td>${c.email}</td>
+                <td>${c.tariffId}</td>
+            </tr>`;
+        });
+
+        html += "</table>";
+        setOutput(html);
+    } catch (e) {
+        setOutput(`<div class="error">${e.message}</div>`);
+    }
+}
+
+
+async function listTariffs() {
+    try {
+        const p = document.getElementById("page").value;
+        const s = document.getElementById("size").value;
+
+        const res = await fetch(`${API}/admin/tariff?page=${p}&size=${s}`);
+        const data = await handleResponse(res);
+
+        let html = `<h3>Тарифи</h3><table>
+            <tr>
+                <th>ID</th><th>Назва</th><th>Ціна</th>
+                <th>Хвилини</th><th>SMS</th><th>GB</th>
+            </tr>`;
+
+        data.content.forEach(t => {
+            html += `<tr>
+                <td>${t.id}</td>
+                <td>${t.name}</td>
+                <td>${t.monthlyPrice}</td>
+                <td>${t.minutesPackage}</td>
+                <td>${t.smsPackage}</td>
+                <td>${t.gigaBytesPackage}</td>
+            </tr>`;
+        });
+
+        html += "</table>";
+        setOutput(html);
+    } catch (e) {
+        setOutput(`<div class="error">${e.message}</div>`);
+    }
+
+}
+
+async function changeTariff() {
+    try {
+        const customerId = document.getElementById("tariffCustomerId").value;
+        const tariffId = document.getElementById("newTariffId").value;
+
+        if (!customerId || !tariffId) {
+            alert("Вкажіть ID клієнта та ID тарифу");
+            return;
+        }
+
+        const res = await fetch(`${API}/change-tariff`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                customerId: Number(customerId),
+                newTariffId: Number(tariffId)
+            })
+        });
+
+        await handleResponse(res); 
+        
+        alert("Тариф змінено");
+        setOutput("<b> Тариф успішно оновлено</b>");
+    } catch (e) {
+        alert("Помилка: " + e.message); 
+        setOutput(`<div class="error">Помилка: ${e.message}</div>`);
+    }
+}
+</script>
+
+</body>
+</html>

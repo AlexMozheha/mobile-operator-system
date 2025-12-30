@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bal:balance xmlns:bal="http://mobileoperator.com/schema/balance"
+             xmlns:base="http://mobileoperator.com/schema/base-types"
+             xmlns:crm="http://mobileoperator.com/schema/customer"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="
+                 http://mobileoperator.com/schema/balance balance.xsd
+                 http://mobileoperator.com/schema/customer customer.xsd">
+
+    <bal:id>d4e5f6a7-b8c9-d0e1-f2a3-b4c5d6e7f8a9</bal:id>
+    <bal:customerId>a1b2c3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6d</bal:customerId>
+    <bal:customer>
+        <crm:id>a1b2c3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6d</crm:id>
+        <crm:fullName>Іваненко*Петро</crm:fullName>
+        <crm:phoneNumber>+2971234567</crm:phoneNumber>
+        <crm:email>ivaneexample.com</crm:email>
+        <crm:createdAt>2023-15T10:00:00Z</crm:createdAt>
+        <crm:tariffId>f1c4-b5a6-9b8c-7d6e-5f4a3b2c1d0e</crm:tariffId>
+        <crm:isActive>kjuh</crm:isActive>
+    </bal:customer>
+    <bal:amount>-444.75</bal:amount>
+    <bal:lastUpdated>2025-10-15T13:00:00Z</bal:lastUpdated>
+</bal:balance>

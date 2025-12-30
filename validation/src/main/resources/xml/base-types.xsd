@@ -1,24 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-           targetNamespace="http://mobileoperator.com/base"
+           targetNamespace="http://mobileoperator.com/schema/base-types"
            elementFormDefault="qualified">
 
-    <!-- Общие типы -->
-    <xs:simpleType name="uuidType">
-        <xs:restriction base="xs:string">
-            <xs:pattern value="[0-9a-fA-F\-]{36}"/>
+    <xs:simpleType name="idType">
+        <xs:restriction base="xs:long">
+            <xs:minInclusive value="1"/>
         </xs:restriction>
     </xs:simpleType>
 
-    <xs:simpleType name="phoneNumberType">
-        <xs:restriction base="xs:string">
-            <xs:pattern value="\+380[0-9]{9}"/>
+    <xs:simpleType name="moneyZIncType">
+        <xs:restriction base="xs:decimal">
+            <xs:fractionDigits value="2"/>
+            <xs:minInclusive value="0.00"/>
+            <xs:totalDigits value="12"/>
         </xs:restriction>
     </xs:simpleType>
 
-    <xs:simpleType name="emailType">
+    <xs:simpleType name="moneyZExType">
+        <xs:restriction base="xs:decimal">
+            <xs:fractionDigits value="2"/>
+            <xs:minExclusive value="0.00"/>
+            <xs:totalDigits value="12"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="nameType">
         <xs:restriction base="xs:string">
-            <xs:pattern value="[^@]+@[^@]+\.[^@]+"/>
+            <xs:minLength value="3"/>
+            <xs:maxLength value="50"/>
+            <xs:whiteSpace value="collapse"/>
+            <xs:pattern value="[A-Za-zА-Яа-яЇїІіЄєҐґ'\-]+( [A-Za-zА-Яа-яЇїІіЄєҐґ'\-]+)*"/>
         </xs:restriction>
     </xs:simpleType>
 

@@ -1,4 +1,4 @@
-package microservice.validation;
+package com.operator.validation;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<invoice xmlns="http://mobileoperator.com/schema/invoice"
+         xmlns:base="http://mobileoperator.com/schema/base-types"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://mobileoperator.com/schema/invoice invoice.xsd">
+    <id>1</id>
+    <customerId>1</customerId>
+    <amount>350.50</amount>
+    <issueDate>2025-10-01T00:00:00Z</issueDate>
+    <status>UNPAID</status>
+</invoice>

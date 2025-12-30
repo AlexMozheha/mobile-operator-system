@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:tns="http://mobileoperator.com/schema/usage-record"
+           targetNamespace="http://mobileoperator.com/schema/usage-record"
+           xmlns:base="http://mobileoperator.com/schema/base-types"
+           elementFormDefault="qualified">
+
+    <xs:import namespace="http://mobileoperator.com/schema/base-types" schemaLocation="base-types.xsd"/>
+
+    <xs:element name="record" type="tns:RecordType"/>
+
+    <xs:complexType name="RecordType">
+        <xs:sequence>
+            <xs:element name="customerId" type="base:idType"/>
+            <xs:element name="callMinutes" type="xs:nonNegativeInteger"/>
+            <xs:element name="smsCount" type="xs:nonNegativeInteger"/>
+            <xs:element name="internetCount" type="xs:nonNegativeInteger"/>
+            <xs:element name="usageDate" type="xs:dateTime"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>

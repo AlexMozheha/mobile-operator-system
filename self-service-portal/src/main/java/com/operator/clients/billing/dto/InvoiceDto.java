@@ -1,6 +1,5 @@
-package com.operator.dto;
+package com.operator.clients.billing.dto;
 
-import com.operator.enums.InvoiceStatus;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotNull;
 
@@ -13,6 +12,6 @@ public record InvoiceDto(
         @NotNull @DecimalMin(value = "0.0") BigDecimal amount,
         @NotNull Instant issueDate,
         Instant paidAt,
-        @NotNull InvoiceStatus status
+        @NotNull String invoiceStatus
 ) {
 }

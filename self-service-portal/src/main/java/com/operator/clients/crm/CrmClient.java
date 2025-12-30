@@ -1,29 +1,15 @@
-package com.operator.client;
+package com.operator.clients.crm;
 
 
-import com.operator.dto.crm.CustomerDto;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import com.operator.clients.crm.dto.CustomerDto;
+import com.operator.clients.crm.dto.TariffChangeCommand;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 
-@RequestMapping("/api/customers")
 public interface CrmClient {
-
-    @GetMapping
-    ResponseEntity<List<CustomerDto>> getAllCustomers();
-
-    @GetMapping("/{id}")
-    ResponseEntity<CustomerDto> getCustomerById(@PathVariable("id") Long id);
-
-    @PostMapping
-    ResponseEntity<CustomerDto> createCustomer(@RequestBody CustomerDto customerDto);
-
-    @PutMapping("/{customerId}/tariff/{tariffId}")
-    ResponseEntity<Void> updateCustomerTariff(
-            @PathVariable("customerId") Long customerId,
-            @PathVariable("tariffId") Long tariffId);
-
-    @GetMapping("/search")
-    ResponseEntity<List<CustomerDto>> findCustomersByTariff(@RequestParam("tariffId") Long tariffId);
+    Page<CustomerDto> getAllCustomers(int page, int size);
+    CustomerDto getCustomerById(Long id);
+    void updateCustomerTariff(TariffChangeCommand command);
+    Page<CustomerDto> findCustomersByTariff(Long tariffId, int page, int size);
 }

@@ -1,0 +1,14 @@
+{
+  "id": "e5c413d9-3f28-4ad8-bc39-b0a17d4cb001",
+  "customerId": "9f2c59f6-21a7лллллл9e2c-91b1e6a4b631",
+  "customer": {
+    "fullName": "А",
+    "phoneNumber": "+380123",
+    "email": "invalid-email",
+    "createdAt": "14-10-2025",
+    "tariffId": "abc",
+    "isActive": "yes"
+  },
+  "amount": -100.00,
+  "lastUpdated": "2025-10-14T12:30:00Z"
+}

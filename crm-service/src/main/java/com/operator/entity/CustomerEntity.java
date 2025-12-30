@@ -1,7 +1,7 @@
 package com.operator.entity;
 
 
-import com.operator.dto.enums.CustomerStatus;
+import com.operator.enums.CustomerStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

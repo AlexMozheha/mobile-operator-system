@@ -1,11 +1,10 @@
 package com.operator.client;
 
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import com.operator.dto.TariffChangeCommand;
 
-@FeignClient(name = "crm-service", url = "${application.config.crm-url}")
 public interface CrmClient {
+    void updateCustomerTariff(TariffChangeCommand request);
 
-    @PutMapping("/api/customers/tariff")
-    void updateCustomerTariff(@RequestBody CrmTariffChangeRequest request);
+    public boolean customerExists(Long customerId);
+
 }

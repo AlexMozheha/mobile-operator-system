@@ -1,4 +1,7 @@
 package com.operator.repository;
 
-public interface TariffRepository {
+import com.operator.entity.TariffEntity;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface TariffRepository extends JpaRepository<TariffEntity, Long> {
 }

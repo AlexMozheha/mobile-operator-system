@@ -1,0 +1,9 @@
+{
+  "id": "1",
+  "name": "Безлім",
+  "description": "Тариф з безлімітним інтернетом та 1000 хвилин по Україні",
+  "monthlyFee": 250.00,
+  "internetLimit": 0,
+  "callMinutes": 1000,
+  "smsLimit": 500
+}

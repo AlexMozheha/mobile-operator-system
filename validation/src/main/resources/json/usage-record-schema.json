@@ -3,20 +3,10 @@
   "title": "Record",
   "type": "object",
   "properties": {
-    "id": {"$ref": "base.json#/definitions/uuidType"},
-    "customerId": {"$ref": "base.json#/definitions/uuidType"},
-    "callMinutes": {
-      "type": "integer",
-      "minimum": 0
-    },
-    "smsCount": {
-      "type": "integer",
-      "minimum": 0
-    },
-    "internetUsed": {
-      "type": "integer",
-      "minimum": 0
-    },
+    "customerId": {"$ref": "base.json#/definitions/idType"},
+    "callMinutes": {"$ref": "base.json#/definitions/recordInt"},
+    "smsCount": {"$ref": "base.json#/definitions/recordInt"},
+    "internetCount": {"$ref": "base.json#/definitions/recordInt"},
     "usageDate": {
       "type": "string",
       "format": "date-time"
