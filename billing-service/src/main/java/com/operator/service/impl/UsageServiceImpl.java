@@ -38,24 +38,18 @@ public class UsageServiceImpl implements UsageService {
 //    @Override
 //    @Transactional
 //    public void processCall(CdrRawData cdr) {
-//        // 1. Знаходимо записи абонента (A-number)
 //
 //        UsageRecordEntity usage = usageRepository.findByPhoneNumber(cdr.callingNumber())
 //                .orElseThrow(() -> new EntityNotFoundException("Calling number not found with id: " + cdr.callingNumber()));
 //
-//        // 2. Рахуємо тривалість у хвилинах (округлення вгору)
 //        long minutesUsed = (long) Math.ceil(cdr.durationSeconds() / 60.0);
-//
-//        // 3. Логіка пакетних хвилин
+
 //        if (usage.getCallMinutes() >= minutesUsed) {
-//            // Є пакетні хвилини
 //            usage.setCallMinutes(usage.getCallMinutes() - (int) minutesUsed);
 //        } else {
-//            // Пакет закінчився — списуємо гроші з балансу (якщо є тарифікація понад пакет)
 //            long overLimit = minutesUsed - usage.getCallMinutes();
 //            usage.setCallMinutes(0);
-//
-//            // Тут можна додати логіку списання грошей (наприклад, 1 грн/хв)
+
 //            BalanceEntity balance = balanceRepository.findById(usage.getCustomerId())
 //                    .orElseThrow(() -> new EntityNotFoundException("Balance not found for customer: " + usage.getCustomerId()));
 //            balance.setAmount(balance.getAmount().subtract(new BigDecimal(overLimit * 1.5)));

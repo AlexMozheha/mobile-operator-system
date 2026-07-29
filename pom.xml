@@ -22,7 +22,6 @@
         <module>billing-service</module>
         <module>crm-service</module>
         <module>self-service-portal</module>
-        <module>operator-frontend</module>
     </modules>
 
     <properties>

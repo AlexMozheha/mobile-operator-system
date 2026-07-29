@@ -1,0 +1,68 @@
+version: '3.8'
+
+services:
+
+  mobile-consul-server:
+    image: hashicorp/consul:1.22
+    container_name: mobile-consul-server
+    ports:
+      - "${CONSUL_PORT:-8500}:8500"
+    command: "agent -dev -client=0.0.0.0"
+    networks:
+      - mobile-network
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8500/v1/status/leader" ]
+      interval: 5s
+      timeout: 5s
+      retries: 3
+
+  billing-service:
+    container_name: billing-service_app
+    build:
+      context: .
+      dockerfile: ./billing-service/Dockerfile
+    ports:
+      - "8082:8082"
+    environment:
+      - CONSUL_HOST=${CONSUL_HOST}
+    depends_on:
+      mobile-consul-server:
+        condition: service_healthy
+    networks:
+      - mobile-network
+
+  crm-service:
+    container_name: crm-service_app
+    build:
+      context: .
+      dockerfile: ./crm-service/Dockerfile
+    ports:
+      - "8081:8081"
+    environment:
+      - CONSUL_HOST=${CONSUL_HOST}
+    depends_on:
+      mobile-consul-server:
+        condition: service_healthy
+    networks:
+      - mobile-network
+
+  self-service-portal:
+    container_name: self-service-portal_app
+    build:
+      context: .
+      dockerfile: ./self-service-portal/Dockerfile
+    ports:
+      - "8083:8083"
+    environment:
+      - CONSUL_HOST=${CONSUL_HOST}
+    depends_on:
+      mobile-consul-server:
+        condition: service_healthy
+    networks:
+      - mobile-network
+
+networks:
+  mobile-network:
+    driver: bridge
+
+
