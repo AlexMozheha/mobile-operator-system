@@ -17,7 +17,8 @@ The system is built as a multi-module Java project utilizing a microservices arc
 *   **Infrastructure:** PostgreSQL (Database), HashiCorp Consul 1.22.7 (Service Discovery / Service Registry).
 *   **DevOps & Orchestration:** Docker, Docker Compose (with healthcheck orchestration).
 
---
+## Business Logic
+Tariff changes go through billing-service: the customer is validated via CRM, an invoice is issued and paid against their balance (rejected if funds are insufficient), and usage quotas (minutes/SMS/data) are updated to match the new tariff.
 
 ### Prerequisites
 Make sure you have the following installed:
